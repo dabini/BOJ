@@ -12,4 +12,4 @@ max_num  = max(new)
 if new.count(max_num) >1 :
     print('?')
 else:
-    print(alpha[new.index(max_num)])
+    print(lst[new.index(max_num)])
