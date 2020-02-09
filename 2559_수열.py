@@ -1,6 +1,7 @@
 N, K = map(int, input().split()) #K는 연속날짜 N = 전체날짜
 
 temp_lst = list(map(int, input().split()))
+<<<<<<< HEAD
 x = 0
 total = sum(temp_lst[0:K])
 max_sum = total
@@ -17,3 +18,22 @@ else:
             max_sum = total
         x += 1
     print(max_sum)
+=======
+res = -100
+
+for n in range(0, N-K+1):
+    if res < n:
+        res = n
+
+
+
+
+    # temp = temp_lst[n:n+K]
+    #
+    #
+    # print(temp)
+
+#     if res < temp:
+#         res = temp
+# print(res)
+>>>>>>> e81a8dd71b025135508ece9b0e46853dbe02b6dd
