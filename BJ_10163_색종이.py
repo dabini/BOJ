@@ -9,7 +9,7 @@ T = int(input())
 #     a.append(lst)
 
 a = [[0] * 101 for i in range(101)]
-print(a)
+# print(a)
 for t in range(1, T+1):
     x, y, w, h = map(int, input().split())
 
