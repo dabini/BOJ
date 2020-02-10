@@ -1,33 +1,106 @@
-# bingo = [[0]*5 for _ in range(5)]
+#1번 문제 풀이
+# def check(cnt):
+#     result = 0
+#     result += bingo.count([0, 0, 0, 0, 0])
+#     if result >= 3:
+#         print(cnt)
+#         return True
+#     for i in range(5):
+#         for j in range(5):
+#             if bingo[j][i] != 0:
+#                 break
 #
-# for i in range(5):
-#     bingo[i] = list(map(int, input().split()))
+#         else:
+#             result += 1
+#             if result >= 3:
+#                 print(cnt)
+#                 return  True
+#     if bingo[0][0] == 0 and bingo[1][1] == 0 and bingo[2][2] == 0 and bingo[3][3] == 0 and bingo[4][4] == 0:
+#         result += 1
+#         if result >=3:
+#             print(cnt)
+#             return True
+#     if bingo[0][4] == 0 and bingo[1][3] == 0 and bingo[2][2] == 0 and bingo[3][1] == 0 and bingo[4][0] == 0:
+#         result += 1
+#         if result >= 3:
+#             print(cnt)
+#             return True
+#     return False
 #
-# check = []
-# for j in range(5):
-#     check += list(map(int, input().split()))
-#
-# dx = [1, -1, 1, 0]
-# dy = [1, 1, 0, 1]
-# total = 0
-#
-# for k in range(len(check)):
-#     for y in range(5):
-#         for x in range(5):
-#             if bingo[y][x] == check[k]:
-#                 bingo[y][x] = 0
-#
-#     if k >= 14:
-#         for a in range(4):
-#             cnt = 0
-#             for b in range(5):
-#                 if bingo[b+(dx[a])][b+(dy[a])] == 0:
-#                     cnt += 1
-#                 else:
+# bingo = [input().split() for _ in range(5)]
+# cnt = 0
+# c = False
+# for y in range(5):
+#     for x in input().split():
+#         cnt += 1
+#         state = False
+#         for j in range(5):
+#             for k in range(5):
+#                 if x == bingo[j][k]:
+#                     state == True
+#                     bingo[j][k] = 0
+#                     c = check(cnt)
 #                     break
-#             if cnt == 5:
-#                 total += 1
-#         if total == 3:
-#            break
-# print(k)
+#             if state:
+#                 break
+#         if c:
+#             break
+#     if c:
+#         break
+
+#2번 문제풀이
+# def bingo_x():
+#     res = 0
+#     for i in range(5):
+#         temp = True
+#         for j in range(5):
+#             if board[i*5+j]:
+#                 temp = False
+#         if temp:
+#             res += 1
+#     return res
 #
+#
+# def bingo_y():
+#     res = 0
+#     for i in range(5):
+#         temp = True
+#         for j in range(5):
+#             if board[i+5*j]:
+#                 temp = False
+#         if temp:
+#             res += 1
+#     return res
+#
+#
+# def bingo_z():
+#     res = 0
+#     temp = True
+#     for i in range(5):
+#         if board[i*6]:
+#             temp = False
+#     if temp:
+#         res += 1
+#     temp = True
+#     for i in range(1, 6):
+#         if board[i*4]:
+#             temp = False
+#     if temp:
+#         res += 1
+#     return res
+#
+#
+# board = []
+# for _ in range(5):
+#     board += input().split()
+# call = []
+# for _ in range(5):
+#     call += input().split()
+# for x in call:
+#     board[board.index(x)] = 0
+#     ans = bingo_x() + bingo_y() + bingo_z()
+#     if ans >= 3:
+#         break
+# print(call.index(x)+1)
+
+
