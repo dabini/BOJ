@@ -17,7 +17,6 @@ data = [0]*(max_x+1)
 for x in range(N):
     data[lst[x][0]] = lst[x][1]
 
-# print(data)
 idx_num = max(data)
 idx = data.index(idx_num)
 
