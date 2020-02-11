@@ -49,58 +49,58 @@
 #         break
 
 #2번 문제풀이
-# def bingo_x():
-#     res = 0
-#     for i in range(5):
-#         temp = True
-#         for j in range(5):
-#             if board[i*5+j]:
-#                 temp = False
-#         if temp:
-#             res += 1
-#     return res
-#
-#
-# def bingo_y():
-#     res = 0
-#     for i in range(5):
-#         temp = True
-#         for j in range(5):
-#             if board[i+5*j]:
-#                 temp = False
-#         if temp:
-#             res += 1
-#     return res
-#
-#
-# def bingo_z():
-#     res = 0
-#     temp = True
-#     for i in range(5):
-#         if board[i*6]:
-#             temp = False
-#     if temp:
-#         res += 1
-#     temp = True
-#     for i in range(1, 6):
-#         if board[i*4]:
-#             temp = False
-#     if temp:
-#         res += 1
-#     return res
-#
-#
-# board = []
-# for _ in range(5):
-#     board += input().split()
-# call = []
-# for _ in range(5):
-#     call += input().split()
-# for x in call:
-#     board[board.index(x)] = 0
-#     ans = bingo_x() + bingo_y() + bingo_z()
-#     if ans >= 3:
-#         break
-# print(call.index(x)+1)
+def bingo_x():
+    res = 0
+    for i in range(5):
+        temp = True
+        for j in range(5):
+            if board[i*5+j]:
+                temp = False
+        if temp:
+            res += 1
+    return res
+
+
+def bingo_y():
+    res = 0
+    for i in range(5):
+        temp = True
+        for j in range(5):
+            if board[i+5*j]:
+                temp = False
+        if temp:
+            res += 1
+    return res
+
+
+def bingo_z():
+    res = 0
+    temp = True
+    for i in range(5):
+        if board[i*6]:
+            temp = False
+    if temp:
+        res += 1
+    temp = True
+    for i in range(1, 6):
+        if board[i*4]:
+            temp = False
+    if temp:
+        res += 1
+    return res
+
+
+board = []
+for _ in range(5):
+    board += input().split()
+call = []
+for _ in range(5):
+    call += input().split()
+for x in call:
+    board[board.index(x)] = 0
+    ans = bingo_x() + bingo_y() + bingo_z()
+    if ans >= 3:
+        break
+print(call.index(x)+1)
 
 

@@ -8,7 +8,6 @@ for n in range(N):
     x_lst += [L]
     lst += [[L, H]]
 
-
 min_x = min(x_lst)
 max_x = max(x_lst)
 max_y = 0
