@@ -2,6 +2,19 @@ w, h = map(int, input().split())
 p, q = map(int, input().split())
 T = int(input())
 
+X = (p + T) % (2*w)
+Y = (q + T) % (2*h)
+
+if X > w:
+    x = w - (X % w)
+else:
+    x = X
+if Y > h:
+    y = h - (Y % h)
+else:
+    y = Y
+print(x, y)
+
 # xd = 1
 # yd = 1
 # while T > 0:
@@ -14,19 +27,3 @@ T = int(input())
 #         q = q + yd
 #         T -= 1
 # print(p, q)
-
-if p + T <= w:
-    x = p+T
-else:
-    if (p+T) % (2*w) > w:
-        x = w - ((p+T) % w)
-    else:
-        x = (p+T) % w
-if q + T <= h:
-    y = q+T
-else:
-    if (q+T) % (2*h) > h:
-        y = h - ((q+T) % h)
-    else:
-        y = (q+T) % h
-print(x, y)

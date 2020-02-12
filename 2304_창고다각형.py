@@ -2,7 +2,6 @@ N = int(input())
 x_lst = []
 lst= []
 
-
 for n in range(N):
     L, H = map(int, input().split())
     x_lst += [L]
