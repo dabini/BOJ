@@ -28,4 +28,5 @@ while 1:
             if arr[y][x] == -1:
                 arr[y][x] = 0
 
-print(f'{time}\n{cnt}')
+print("{}".format(time))
+print("{}".format(cnt))
