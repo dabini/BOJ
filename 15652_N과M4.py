@@ -1,3 +1,4 @@
+#수정 필요..
 n, m = map(int, input().split())
 
 a = [0] * m
