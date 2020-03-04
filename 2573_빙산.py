@@ -14,18 +14,47 @@ def DFS(x, y):
         else:
             ice_check[y][x] = ice[y][x] - cnt
 
-def BFS(x, y):
-    global res
-    q = [(x, y)]
-    
+def BFS(x, y): #빙하가 두 조각으로 나뉘는 지를 비교)
+    global max_len
+    visited[y][x] += 1
+    q.append((y, x))
+    lst.append((y, x))
+    dx = [0, 1, 0, -1]
+    dy = [1, 0, -1, 0]
+    while q:
+        y, x = q.pop(0)
+        for d in range(4):
+            ny = y + dy[d]
+            nx = x + dx[d]
+            if 0 <= ny < Y and 0 <= nx < X:
+                if ice[ny][nx] and not visited[ny][nx]:
+                    q.append((ny, nx))
+                    lst.append((ny, nx))
+                    visited[ny][nx] += 1
+    if max_len < len(lst):
+        max_len = len(lst)
 
 
 Y, X = map(int, input().split())
 ice = [list(map(int, input().split())) for _ in range(Y)]
 # print(ice)
 res = 0
+num = 0
 while True:
     ice_check = [[0] * X for __ in range(Y)]
+
+    q = []
+    max_len = 0
+    visited = [[0] * X for __ in range(Y)]
+    for j in range(Y):
+        for i in range(X):
+            if ice[j][i] != 0:
+                y, x = j, i
+                lst = []
+                BFS(x, y)
+                num += 1
+    res += 1
+
     check = True
     for y in range(Y):
         for x in range(X):
@@ -33,16 +62,14 @@ while True:
                 j, i = y, x
                 check = False
                 DFS(i, j)
+    ice = ice_check
 
-    for j in range(Y):
-        for i in range(X):
-            if ice[j][i] != 0:
-                y, x = j, i
-                BFS(x, y)
-    if check:
+
+    if num != max_len:
+        break
+
+    elif check:
         res = 0
         break
-    else:
-        ice = ice_check
-        res += 1
+
 print(res)
