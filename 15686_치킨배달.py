@@ -24,7 +24,6 @@ for j in range(N):
 
 chain = list(combinations(chicken, M))
 
-
 min_res = 3987654321
 for c in chain:
     res = find(list(c), home)
