@@ -60,26 +60,26 @@
 
 def find(lst):
     i = 0
-    stack = 1
+    check = 1
     now = lst[i]
     while i < N-1 :
         i += 1
-        diff = now - lst[i]
-        if diff >1 or diff < -1: #1이상 차이날 때
+        d = now - lst[i]
+        if d >1 or d < -1: #1이상 차이날 때
             return False
-        elif diff == 1:
+        elif d == 1:
             if i+L > N: #범위 벗어날 때
                 return False
             for k in range(i+1, i+L): #범위내에서
                 if now - lst[k] != 1:
                     return False
-            stack = 1-L
-        elif diff == -1:
-            if i-L < 0 or stack < L:
+            check = 1-L
+        elif d == -1:
+            if i-L < 0 or check < L:
                 return False
-            stack = 1
+            check = 1
         else:
-            stack += 1
+            check += 1
 
         now = lst[i]
     return True
@@ -92,10 +92,10 @@ for m in mymap:
     if find(m):
         cnt += 1
 
-for y in range(N):
-    for x in range(N):
-        if x > y:
-            mymap[y][x], mymap[x][y] = mymap[x][y], mymap[y][x] #pivot해주기
+for j in range(N):  #전치행렬 만들기
+    for i in range(N):
+        if i > j:
+            mymap[j][i], mymap[i][j] = mymap[i][j], mymap[j][i]
 
 for m in mymap:
     if find(m):
