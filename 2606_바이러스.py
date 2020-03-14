@@ -1,12 +1,13 @@
-def Find(a):
-    global cnt
-    visited.append(a)
-    for now in range(num+1):
-        if arr[a][now] and now not in visited:
-            cnt += 1
-            Find(now)
-        return
-
+def BFS(a):
+    q= [a]
+    res = [a]
+    while q:
+        now = q.pop()
+        for new in range(num +1):
+            if arr[new][now] and new not in res:
+                res.append(new)
+                q.append(new)
+    return len(res)
 num = int(input())
 arr = [[0] * (num+1) for _ in range(num+1)]
 visited = []
@@ -14,5 +15,5 @@ cnt = 0
 for _ in range(int(input())):
     start, end = map(int, input().split())
     arr[start][end] = 1
-Find(1)
-print(cnt)
+    arr[end][start] = 1
+print(BFS(1) -1)
