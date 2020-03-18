@@ -46,7 +46,7 @@ def bfs(x, y):
         for d in range(4):
             nx = i + dx[d]
             ny = j + dy[d]
-            if 0 <= nx < X and 0 <= ny < Y:
+            if 0 <= nx < shark_x and 0 <= ny < Y:
                 if visited[ny][nx] == 0 and mymap[ny][nx] == "L":
                     q.append((nx, ny, tmp+1))
                     visited[ny][nx] = 1
@@ -54,14 +54,14 @@ def bfs(x, y):
                         cnt = tmp+1
     return cnt
 
-Y, X = map(int, input().split())
+Y, shark_x = map(int, input().split())
 mymap = [list(input()) for _ in range(Y)]
-visited = [[0]*X for _ in range(Y)]
+visited = [[0] * shark_x for _ in range(Y)]
 res = 0
 
 for y in range(Y):
-    for x in range(X):
+    for x in range(shark_x):
         if mymap[y][x] == 'L':
-            visited = [[0]*X for _ in range(Y)] #값을 돌릴 때 마다 초기화 시켜주기
+            visited = [[0] * shark_x for _ in range(Y)] #값을 돌릴 때 마다 초기화 시켜주기
             res = max(res, bfs(x, y))
 print(res)

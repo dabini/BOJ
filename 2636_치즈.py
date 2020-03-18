@@ -4,7 +4,7 @@ dx = [1, 0, -1, 0]
 dy = [0, 1, 0, -1]
 
 def DFS(y, x, visited):
-    global X, Y
+    global shark_x, Y
     for d in range(4):
         newy = y + dy[d]
         newx = x + dx[x]
@@ -26,14 +26,14 @@ def melted(y, x, visited):
     for d in range(4):
         newy = y + dy[d]
         newx = x + dx[x]
-        if 0 < newy < Y and 0 < newx < X and (newy,newx) not in visited and cheese[newy][newx] == 1:
+        if 0 < newy < Y and 0 < newx < shark_x and (newy, newx) not in visited and cheese[newy][newx] == 1:
             melted(newy, newx, visited)
     if check:
         cheese[y][x] = -1
     return visited
 
 
-Y, X = map(int, input().split())
+Y, shark_x = map(int, input().split())
 cheese = [list(map(int, input().split()))for _ in range(Y)]
 
 melt = False
@@ -43,14 +43,14 @@ while not melt:
     visited = set()
 
     for y in range(Y):
-        for x in range(X):
+        for x in range(shark_x):
             if cheese[y][x] == 1 and (y, x) not in visited:
                 visited = melted(y, x, set())
     time += 1
 
     melt = True
     for y in range(Y):
-        for x in range(X):
+        for x in range(shark_x):
             if cheese[y][x] == 1:
                 melt = False
 print(time)

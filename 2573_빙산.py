@@ -6,7 +6,7 @@ def DFS(x, y):
     for d in range(4):
         ny = y + dy[d]
         nx = x + dx[d]
-        if 0 <= ny < Y and 0 <= nx < X:
+        if 0 <= ny < Y and 0 <= nx < shark_x:
             if ice[ny][nx] == 0:
                 cnt +=1
         if ice[y][x] - cnt < 0:
@@ -26,7 +26,7 @@ def BFS(x, y): #빙하가 두 조각으로 나뉘는 지를 비교)
         for d in range(4):
             ny = y + dy[d]
             nx = x + dx[d]
-            if 0 <= ny < Y and 0 <= nx < X:
+            if 0 <= ny < Y and 0 <= nx < shark_x:
                 if ice[ny][nx] and not visited[ny][nx]:
                     q.append((ny, nx))
                     lst.append((ny, nx))
@@ -35,19 +35,19 @@ def BFS(x, y): #빙하가 두 조각으로 나뉘는 지를 비교)
         max_len = len(lst)
 
 
-Y, X = map(int, input().split())
+Y, shark_x = map(int, input().split())
 ice = [list(map(int, input().split())) for _ in range(Y)]
 # print(ice)
 res = 0
 num = 0
 while True:
-    ice_check = [[0] * X for __ in range(Y)]
+    ice_check = [[0] * shark_x for __ in range(Y)]
 
     q = []
     max_len = 0
-    visited = [[0] * X for __ in range(Y)]
+    visited = [[0] * shark_x for __ in range(Y)]
     for j in range(Y):
-        for i in range(X):
+        for i in range(shark_x):
             if ice[j][i] != 0:
                 y, x = j, i
                 lst = []
@@ -57,7 +57,7 @@ while True:
 
     check = True
     for y in range(Y):
-        for x in range(X):
+        for x in range(shark_x):
             if ice[y][x] != 0:
                 j, i = y, x
                 check = False

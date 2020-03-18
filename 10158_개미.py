@@ -2,13 +2,13 @@ w, h = map(int, input().split())
 p, q = map(int, input().split())
 T = int(input())
 
-X = (p + T) % (2*w)
+shark_x = (p + T) % (2 * w)
 Y = (q + T) % (2*h)
 
-if X > w:
-    x = w - (X % w)
+if shark_x > w:
+    x = w - (shark_x % w)
 else:
-    x = X
+    x = shark_x
 if Y > h:
     y = h - (Y % h)
 else:
