@@ -1,3 +1,5 @@
+import sys
+sys.setrecursionlimit(10**8)
 def find(x, y):
     arr[y][x] = 0
     dx = [1, 0, -1, 0]
@@ -17,9 +19,9 @@ for t in range(T):
         arr[y][x] = 1
 
 
-        for n in range(N):
-            for m in range(M):
-                if arr[n][m] == 1:
-                    find(m, n)
-                    cnt += 1
+    for n in range(N):
+        for m in range(M):
+            if arr[n][m] == 1:
+                find(m, n)
+                cnt += 1
     print(cnt)
