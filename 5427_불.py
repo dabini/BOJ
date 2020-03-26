@@ -98,6 +98,25 @@
 #         arr.append(r())
 #     bfs()
 
+def bfs():
+    dx = [-1, 0, 1, 0]
+    dy = [0, 1, 0, -1]
+    q.append((sx, sy, 0))
+    visited[sx][sy] = 1
+    while q:
+        x, y, cnt = q.popleft()
+        for d in range(4):
+            nx, ny = x + dx[d], y + dy[d]
+            if nx < 0 or nx >= h or ny < 0 or ny >= w:
+                if cnt == 1:
+                    continue
+                print(visited[x][y])
+                return
+            if visited[nx][ny] or building[nx][ny] == '#':
+                continue
+            visited[nx][ny] = visited[x][y] + 1
+            q.append((nx, ny, cnt))
+    print("IMPOSSIBLE")
 
 import sys
 from collections import deque
@@ -109,26 +128,6 @@ for _ in range(int(input())):
     visited = [[0] * w for _ in range(h)]
     q = deque()
     sx, sy = 0, 0
-    dx = [-1, 0, 1, 0]
-    dy = [0, 1, 0, -1]
-
-    def bfs():
-        q.append((sx, sy, 0))
-        visited[sx][sy] = 1
-        while q:
-            x, y, cnt = q.popleft()
-            for d in range(4):
-                nx, ny = x+dx[d], y+dy[d]
-                if nx < 0 or nx >= h or ny < 0 or ny >= w:
-                    if cnt == 1:
-                        continue
-                    print(visited[x][y])
-                    return
-                if visited[nx][ny] or building[nx][ny] == '#':
-                    continue
-                visited[nx][ny] = visited[x][y] + 1
-                q.append((nx, ny, cnt))
-        print("IMPOSSIBLE")
 
     for i in range(h):
         for j in range(w):
