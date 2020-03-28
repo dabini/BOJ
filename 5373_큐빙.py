@@ -205,6 +205,21 @@ for t in range(T):
         print(''.join(up[j]))
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # def self(array, d):
 #     if d == '-':    # 반시계방향
 #         array[0][0], array[0][2], array[2][2], array[2][0] = array[0][2], array[2][2], array[2][0], array[0][0]
