@@ -1,75 +1,85 @@
-def DFS(x, y):
-    global cnt
-    dx = [1, 0, -1, 0]
-    dy = [0, 1, 0, -1]
-    cnt = 0  #빙산 주변 0의 개수 체크
+import sys
+sys.setrecursionlimit(10**8)
+
+dx = [1, 0, -1, 0]
+dy = [0, 1, 0, -1]
+def dfs(x, y, n):
     for d in range(4):
-        ny = y + dy[d]
-        nx = x + dx[d]
-        if 0 <= ny < Y and 0 <= nx < shark_x:
-            if ice[ny][nx] == 0:
-                cnt +=1
-        if ice[y][x] - cnt < 0:
-            ice_check[y][x]  = 0
-        else:
-            ice_check[y][x] = ice[y][x] - cnt
+        nx, ny = x+dx[d], y+dy[d]
+        if 0 < arr[nx][ny] and visited[nx][ny] <n:
+            visited[nx][ny] = n
+            dfs(nx, ny, n)
+        elif arr[x][y] > 0 and not arr[nx][ny] and visited[nx][ny] < n:
+            arr[x][y] -= 1
 
-def BFS(x, y): #빙하가 두 조각으로 나뉘는 지를 비교)
-    global max_len
-    visited[y][x] += 1
-    q.append((y, x))
-    lst.append((y, x))
-    dx = [0, 1, 0, -1]
-    dy = [1, 0, -1, 0]
-    while q:
-        y, x = q.pop(0)
-        for d in range(4):
-            ny = y + dy[d]
-            nx = x + dx[d]
-            if 0 <= ny < Y and 0 <= nx < shark_x:
-                if ice[ny][nx] and not visited[ny][nx]:
-                    q.append((ny, nx))
-                    lst.append((ny, nx))
-                    visited[ny][nx] += 1
-    if max_len < len(lst):
-        max_len = len(lst)
+N, M = map(int, input().split())
+arr = [list(map(int, input().split())) for _ in range(N)]
+visited = [[0]*M for _ in range(N)]
 
-
-Y, shark_x = map(int, input().split())
-ice = [list(map(int, input().split())) for _ in range(Y)]
-# print(ice)
-res = 0
-num = 0
-while True:
-    ice_check = [[0] * shark_x for __ in range(Y)]
-
-    q = []
-    max_len = 0
-    visited = [[0] * shark_x for __ in range(Y)]
-    for j in range(Y):
-        for i in range(shark_x):
-            if ice[j][i] != 0:
-                y, x = j, i
-                lst = []
-                BFS(x, y)
-                num += 1
-    res += 1
-
+def solve():
+    n = 1
     check = True
-    for y in range(Y):
-        for x in range(shark_x):
-            if ice[y][x] != 0:
-                j, i = y, x
-                check = False
-                DFS(i, j)
-    ice = ice_check
+    while check:
+        check = False
+        for x in range(1, N-1):
+            for y in range(1, M-1):
+                if arr[x][y] and visited[x][y] <n:
+                    if not check:
+                        visited[x][y] = n
+                        dfs(x, y, n)
+                        check = True
+                    else:
+                        return n-1
+        n += 1
+    return 0
+
+print(solve())
 
 
-    if num != max_len:
-        break
-
-    elif check:
-        res = 0
-        break
-
-print(res)
+#bfs
+# import sys
+#
+# def bfs(y, x):
+#     dx = [0, 1, 0, -1]
+#     dy = [1, 0, -1, 0]
+#
+#     queue = [(x, y)]
+#     vis[y][x] = True
+#
+#     while queue:
+#         x, y = queue.pop(0)
+#         for i in range(4):
+#             xi = x + dx[i]
+#             yi = y + dy[i]
+#             if 0 <= xi < M and 0 <= yi < N and not vis[yi][xi]:
+#                 if arctic[yi][xi] == 0 and arctic[y][x] > 0:
+#                     arctic[y][x] -= 1
+#                 elif arctic[yi][xi] >= 1:
+#                     vis[yi][xi] = True
+#                     queue.append((xi, yi))
+#     return 1
+#
+#
+# N, M = map(int, sys.stdin.readline().split())
+# arctic = []
+# for i in range(N):
+#     arctic.append(list(map(int, sys.stdin.readline().split())))
+#
+# cnt = 0
+# time = -1
+# while cnt < 2:
+#     vis = [[False] * M for i in range(N)]
+#     cnt = 0
+#     is_fin = True
+#     for j in range(N):
+#         for i in range(M):
+#             if arctic[j][i] > 0 and not vis[j][i]:
+#                 is_fin = False
+#                 cnt += bfs(j, i)
+#
+#     time += 1
+#     if is_fin:
+#         time = 0
+#         break
+#
+# print(time)
