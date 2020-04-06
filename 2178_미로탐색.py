@@ -1,11 +1,10 @@
 def BFS(x, y):
-    global cnt
     dx = [1, 0, -1, 0]
     dy = [0, 1, 0, -1]
     q = []
     q.append((x, y))
     visited[y][x] = 1
-    cnt = 1
+
     while q:
         i, j = q.pop(0)
         for d in range(4):
