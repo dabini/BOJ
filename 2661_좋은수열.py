@@ -6,29 +6,25 @@
 """
 
 import sys
-
-def back(num, N):
-    if N == 0:
-        print("".join(list(map(str, num))))
-        exit()
-    else:
-        for i in range(1,4):
-            num.append(i)
-            conf(num)
-            if check:
-                back(num, N-1)
-            num.pop()
-
-def conf(num):
-    global check
-    check = True
-    for i in range(1, len(num)//2+1):
-        for j in range(0, len(num)-i+1, i):
-            if num[j:j+i] == num[j+i:j+i+i]:
-                check = False
-                return check
-
 input = sys.stdin.readline
-N = int(input())
-num = [1]
-back(num, N-1)
+
+def solve(s, l):
+    global check, res
+    if check:
+        return
+    for i in range(1, l//2 + 1):
+        a = int(s[l-i:])
+        b = int(s[l-2*i:l-i])
+        if a == b:
+            return
+    if l == n:
+        res = s
+        check = True
+    for i in ['1', '2', '3']:
+        solve(s+i, l+1)
+
+n = int(input())
+check = False
+res = -1
+solve('1', 1)
+print(res)
