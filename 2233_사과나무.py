@@ -24,24 +24,29 @@ DFS(tree)
 # print(lst)
 # print(parents)
 
-X_parents = [lst[X]]
-Y_parents = [lst[Y]]
+checkx = lst[X]
+checky = lst[Y]
+X_parents = [checkx]
+Y_parents = [checky]
 
-while parents[lst[X]]:
-    X_parents.append(parents[lst[X]])
-    lst[X] = parents[lst[X]]
-while parents[lst[Y]]:
-    Y_parents.append(parents[lst[Y]])
-    lst[Y] = parents[lst[Y]]
+while parents[checkx]:
+    X_parents.append(parents[checkx])
+    checkx = parents[checkx]
+while parents[checky ]:
+    Y_parents.append(parents[checky])
+    checky = parents[checky]
 
-dx = len(X_parents) - 1
-dy = len(Y_parents) - 1
+lca = 1
+for x in X_parents:
+    for y in Y_parents:
+        if x == y:
+            if lca < x:
+                lca = x
+dx = dy = -1
 
-while X_parents[dx] == Y_parents[dy]:
-    dx -= 1
-    dy -= 1
-
-idx = X_parents[dx+1]
-for i in range(len((lst))):
-    if idx == lst[i]:
-        print(i, end=" ")
+for i in range(len(lst)):
+    if lst[i] == lca and dx == -1:
+        dx = i
+    elif lst[i] == lca and dy == -1:
+        dy = i
+print(dx, dy)

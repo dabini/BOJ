@@ -14,10 +14,10 @@ def inorder_traverse(T):
         print(chr(T + ord('A')-1), end='')
         inorder_traverse(tree[T][1])
 
-def outorder_traverse(T):
+def postorder_traverse(T):
     if T:
-        outorder_traverse(tree[T][0])
-        outorder_traverse(tree[T][1])
+        postorder_traverse(tree[T][0])
+        postorder_traverse(tree[T][1])
         print(chr(T + ord('A')-1), end='')
 
 
@@ -35,4 +35,4 @@ preorder_traverse(1)
 print()
 inorder_traverse(1)
 print()
-outorder_traverse(1)
+postorder_traverse(1)
