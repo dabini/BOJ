@@ -1,10 +1,13 @@
 import sys
 input = sys.stdin.readline
 
-minnum = 987654321
 N = int(input())
+ropes = []
 for n in range(N):
-    rope = int(input())
-    if rope < minnum:
-        minnum = rope
-print(minnum*N)
+    ropes.append(int(input()))
+ropes.sort(reverse=True)
+max_num = 0
+for i in range(N):
+    if ropes[i] * (i+1) > max_num:
+        max_num = ropes[i] * (i+1)
+print(max_num)

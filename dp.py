@@ -1,27 +1,20 @@
-import sys
+N = int(input())
+sentence = list(input().split())
+data = [0]
+for word in sentence:
+    data.append(len(word))
 
-def find(words):
-    tmp = 0
-    while words:
-        cnt = 0
-        check = []
-        for word in words:
-            if word not in check:
-                check.append(word)
-                cnt += len(word)
-            if cnt + len(check)-1 > W:
-                k = check.pop()
-                cnt -= len(k)
-                check.pop()
-                break
+DP = [0] + [1000000] * (len(data)-1)
+for cur in range(1, len(data)):
+    for new in range(cur, 0, -1):
+        new_list = data[new:cur+1]
+        check = sum(new_list) + (len(new_list) - 1)
+        if check <= N:
+            DP[cur] = min(DP[new-1] + (N - check) ** 3, DP[cur])
+        else:
+            break
 
-        tmp += (W-cnt-(len(check)-1)) ** 3
-        for c in check:
-            words.remove(c)
-    return tmp
+# print(data)
+# print(DP)
 
-input = sys.stdin.readline
-
-W = int(input())
-words = list(map(str, input().split()))
-print(find(words))
+print(DP[-1])
