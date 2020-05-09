@@ -1,3 +1,5 @@
+
+
 N = int(input())
 sentence = list(input().split())
 data = [0]
