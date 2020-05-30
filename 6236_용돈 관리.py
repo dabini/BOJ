@@ -13,16 +13,18 @@ while start <= end:
     mid = (start+end) // 2
     ans = 0
     cnt = 1
-    for i in range(N):
-        if ans + lst[i] > mid:
-            ans = 0
-            cnt += 1
-        ans += lst[i]
+    for money in lst:
+        if money > mid:
+            start = mid
+        ans += money
 
-    if ans != 0:
+        if ans > mid:
+            ans = money
+            cnt += 1
+    if ans > 0:
         cnt += 1
-    if cnt <= M:
+    if cnt <=  M:
         end = mid - 1
     else:
-        start = mid + 1
+        start = mid +1
 print(end)
