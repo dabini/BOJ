@@ -2,11 +2,16 @@ import sys
 
 input = sys.stdin.readline
 
-burger = []
-beverage = []
+burger = 2000
+beverage = 2000
 for _ in range(3):
-    burger.append(int(input()))
-for _ in range(2):
-    beverage.append(int(input()))
+    price = int(input())
+    if burger >= price:
+        burger = price
 
-print(min(burger) + min(beverage) - 50)
+for _ in range(2):
+    price = int(input())
+    if beverage >= price:
+        beverage = price
+
+print(burger + beverage - 50)
