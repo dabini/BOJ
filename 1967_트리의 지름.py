@@ -26,7 +26,7 @@ for n in range(N-1):
     sup, sub, num = map(int, input().split())
     arr[sup].append([sub, num])
     arr[sub].append([sup, num])
-# print(arr)
+print(arr)
 check = False
 tmp= bfs(1)
 check = True
